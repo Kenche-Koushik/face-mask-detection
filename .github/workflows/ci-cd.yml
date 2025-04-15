@@ -1,0 +1,37 @@
+name: Face Mask Detection CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Compose
+        run: docker-compose build
+
+      - name: Run Backend Tests
+        run: |
+          # Start the backend service
+          docker-compose up -d backend
+
+          # Wait until the backend is ready
+          echo "Waiting for backend to initialize..."
+          sleep 15  # Increase time if needed
+
+          # Run the test (replace test.jpg with your actual test image in the backend folder)
+          curl --fail -X POST http://localhost:5000/predict \
+            -F 'image=@backend/test.jpg' || exit 1
+
+      # Optionally: Add deployment step here
+      # - name: Deploy to Server
+      #   run: |
+      #     # Deploy commands for your hosting platform (e.g., Render, EC2, etc.)
