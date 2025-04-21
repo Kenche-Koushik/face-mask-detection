@@ -4,7 +4,7 @@ pipeline {
     environment {
         BACKEND_URL = "http://localhost:5000/health"
     }
-    
+
     stages {
         stage('Clone Repository') {
             steps {
@@ -26,10 +26,14 @@ pipeline {
 
         stage('Test Backend API') {
             steps {
+                // Give backend time to start
                 bat 'powershell -Command Start-Sleep -Seconds 10'
-                bat 'curl --fail http://localhost:5000 || exit 1'
+        
+                // ✅ Updated health check route
+                bat 'curl --fail http://localhost:5000/health || exit 1'
             }
         }
+
     }
 
     post {
