@@ -22,7 +22,7 @@ pipeline {
 
         stage('Test Backend API') {
             steps {
-                bat 'timeout /t 10 > NUL'
+                bat 'timeout /t 10'
                 bat 'curl --fail http://localhost:5000 || exit 1'
             }
         }
