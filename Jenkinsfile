@@ -10,19 +10,19 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker-compose -f docker-compose.yml build'
+                bat 'docker-compose -f docker-compose.yml build'
             }
         }
 
         stage('Run Containers') {
             steps {
-                sh 'docker-compose -f docker-compose.yml up -d'
+                bat 'docker-compose -f docker-compose.yml up -d'
             }
         }
 
         stage('Test Backend API') {
             steps {
-                sh 'curl --fail http://localhost:5000 || exit 1'
+                bat 'curl --fail http://localhost:5000 || exit 1'
             }
         }
     }
