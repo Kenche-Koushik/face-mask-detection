@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        BACKEND_URL = "http://localhost:5000/health"
+    }
+    
     stages {
         stage('Clone Repository') {
             steps {
@@ -23,8 +27,7 @@ pipeline {
         stage('Test Backend API') {
             steps {
                 bat 'powershell -Command Start-Sleep -Seconds 10'
-                bat 'curl --fail http://localhost:5000/health
-'
+                bat 'curl --fail http://localhost:5000 || exit 1'
             }
         }
     }
