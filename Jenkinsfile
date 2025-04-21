@@ -23,7 +23,8 @@ pipeline {
         stage('Test Backend API') {
             steps {
                 bat 'powershell -Command Start-Sleep -Seconds 10'
-                bat 'curl --fail http://localhost:5000 || exit 1'
+                bat 'curl --fail http://localhost:5000/health
+'
             }
         }
     }

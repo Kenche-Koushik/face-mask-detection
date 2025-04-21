@@ -14,6 +14,11 @@ model = load_model("face_mask_model.h5")
 # Adjust based on your model input
 IMG_SIZE = (224, 224)  # Change to (128, 128) or whatever your model uses
 
+# Health check endpoint
+@app.route('/health', methods=['GET'])
+def health_check():
+    return "Backend is up", 200
+
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'image' not in request.files:
