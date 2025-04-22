@@ -34,6 +34,16 @@ pipeline {
             }
         }
 
+        stage('Test Frontend UI') {
+            steps {
+                bat 'powershell -Command "Start-Sleep -Seconds 5"'
+                bat '''
+                    curl --fail http://localhost:8087 || exit 1
+                    echo Frontend is up
+                '''
+            }
+        }
+
     }
 
     post {
