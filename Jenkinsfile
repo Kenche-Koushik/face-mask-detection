@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         BACKEND_URL = "http://localhost:5000/health"
+        FRONTEND_URL = "http://localhost:8087"
     }
 
     stages {
