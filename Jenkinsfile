@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                bat 'docker-compose -f docker-compose.yml build'
+                bat 'docker-compose -f docker-compose.yml build --no-cache'
             }
         }
 
