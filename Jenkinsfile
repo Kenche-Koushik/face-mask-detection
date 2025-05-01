@@ -27,10 +27,8 @@ pipeline {
 
         stage('Test Backend API') {
             steps {
-                // Give backend time to start
                 bat 'powershell -Command Start-Sleep -Seconds 10'
         
-                // ✅ Updated health check route
                 bat 'curl --fail http://localhost:5000/health || exit 1'
             }
         }
