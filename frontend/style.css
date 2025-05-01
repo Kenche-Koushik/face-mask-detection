@@ -1,7 +1,8 @@
 /* Body styling */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f194d4;
+  background-color: #f8c8dc;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.2) 0, rgba(255,255,255,0.2) 1px, transparent 2px, transparent 6px);
   margin: 0;
   padding: 0;
   display: flex;
